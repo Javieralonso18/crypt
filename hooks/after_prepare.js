@@ -1,9 +1,9 @@
 module.exports = function(context) {
 
-    var path              = context.requireCordovaModule('path'),
-        fs                = context.requireCordovaModule('fs'),
-        crypto            = context.requireCordovaModule('crypto'),
-        Q                 = context.requireCordovaModule('q'),
+    var path              = context.require('path'),
+        fs                = context.require('fs'),
+        crypto            = context.require('crypto'),
+        Q                 = context.require('q'),
         cordova_util      = context.requireCordovaModule('cordova-lib/src/cordova/util'),
         platforms         = context.requireCordovaModule('cordova-lib/src/platforms/platforms'),
         Parser            = context.requireCordovaModule('cordova-lib/src/cordova/metadata/parser'),
@@ -153,7 +153,7 @@ module.exports = function(context) {
     }
 
     function replaceCryptKey_android(pluginDir, key, iv) {
-        var sourceFile = path.join(pluginDir, 'com/tkyaji/cordova/DecryptResource.java');
+        var sourceFile = path.join(pluginDir, '../app/src/main/java/com/tkyaji/cordova/DecryptResource.java');
         var content = fs.readFileSync(sourceFile, 'utf-8');
 
         var includeArrStr = targetFiles.include.map(function(pattern) { return '"' + pattern.replace('\\', '\\\\') + '"'; }).join(', ');
